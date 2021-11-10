@@ -38,14 +38,7 @@ export const GameDetail = () => {
                         {game.category?.map((cat)=><li>{cat.label}</li>)}
                         </ul>
                         </div>
-                        <h3>Reviews</h3>
-                        {game.reviews?.map((review)=>{
-                            return(
-                                <div>
-                                    <h4>{review.player.user.username}</h4>
-                                    <p>{review.description}</p>
-                                </div>)
-                        })}
+                        
                         
                         {game.rated ? 
                         <div>

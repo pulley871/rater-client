@@ -30,7 +30,7 @@ export const GameList = (props) => {
                             <ul>
                         {game.category.map((cat)=><li>{cat.label}</li>)}
                         </ul>
-                        
+                        {game.is_host ? <button className="edit-btn btn-1" onClick={()=>history.push(`/games/${game.id}/edit`)}>Edit</button>: ""}
                         </div>
                     </section>
                 })
