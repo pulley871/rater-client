@@ -21,3 +21,18 @@
     width: 4rem;
     
 }
+/* .game-image img{
+    
+    max-width: 20rem;
+    max-height: 20rem;
+    border: 1px solid grey;
+    border-radius: 12%;
+
+} */
+.game-image{
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 1rem;
+    
+}

@@ -6,6 +6,14 @@ export const getGames = () => {
     })
         .then(response => response.json())
 }
+export const getSearchedGames = (search) => {
+    return fetch(`http://localhost:8000/games?q=${search}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(response => response.json())
+}
 export const createGame = (game) => {
     return fetch("http://localhost:8000/games", {
         method: "POST",
@@ -79,3 +87,16 @@ export const updateGame = (game, id) => {
     })
         
 }
+
+export const createGameImage = (image) => {
+    return fetch("http://localhost:8000/gameimages", {
+        method: "POST",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(image)
+    })
+        
+}
+
