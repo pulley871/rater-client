@@ -14,6 +14,14 @@ export const getSearchedGames = (search) => {
     })
         .then(response => response.json())
 }
+export const getFilteredGames = (search) => {
+    return fetch(`http://localhost:8000/games?orderby=${search}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(response => response.json())
+}
 export const createGame = (game) => {
     return fetch("http://localhost:8000/games", {
         method: "POST",

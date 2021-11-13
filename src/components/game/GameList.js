@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router"
-import { getGames, getSearchedGames } from "./Gamemanager.js"
+import { getGames, getSearchedGames, getFilteredGames } from "./Gamemanager.js"
 import "./Game.css"
 import { Link } from "react-router-dom"
 export const GameList = (props) => {
     const [ games, setGames ] = useState([])
     const history = useHistory()
     const [searchTerm, setTerm] = useState("")
+    const [filter, setFilter] = useState("")
     useEffect(() => {
         getGames().then(data => setGames(data))
     }, [])
@@ -18,6 +19,14 @@ export const GameList = (props) => {
             getGames().then(data => setGames(data))
         }
     }, [searchTerm])
+    useEffect(() => {
+        if (filter != ""){
+
+            getFilteredGames(filter).then((data) => setGames(data))
+        }else{
+            getGames().then(data => setGames(data))
+        }
+    }, [filter])
     return (
         <article className="games">
             <button className="btn btn-2 btn-sep icon-create"
@@ -26,6 +35,18 @@ export const GameList = (props) => {
             }}
             >Register New Game</button>
             <input type='text' placeholder="Search By Category" onChange={(event)=>setTerm(event.target.value)}/>
+            <label htmlFor="filter_by">Filter By:</label>
+            <select name='filter_by' onChange={(event) => {
+                setFilter(event.target.value)
+            }}>
+                <option value="title">Title</option>
+                <option value="designer">Designer</option>
+                <option value="release_date">Release Date</option>
+            </select>
+            <button onClick={() => {
+                setFilter("")
+                setTerm("")
+            }}>Reset Filters</button>
             {
                 games?.map(game => {
                     return <section key={`game--${game.id}`} className="game">
